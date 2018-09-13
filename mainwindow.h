@@ -2,7 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QPixmap>
+//#include <QPixmap>
+#include <QString>
+#include <QImage>
+#include <QMessageBox>
 
 namespace Ui {
 class MainWindow;
@@ -18,6 +21,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    void loadImg(QString *);
 };
 
 #endif // MAINWINDOW_H
