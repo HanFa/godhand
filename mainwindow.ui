@@ -6,9 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1064</width>
-    <height>657</height>
+    <width>1068</width>
+    <height>580</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1068</width>
+    <height>580</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1068</width>
+    <height>580</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -19,13 +37,19 @@
      <rect>
       <x>11</x>
       <y>11</y>
-      <width>282</width>
-      <height>208</height>
+      <width>321</width>
+      <height>191</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
+     <property name="labelAlignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
      <property name="horizontalSpacing">
-      <number>8</number>
+      <number>35</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>5</number>
      </property>
      <item row="0" column="0">
       <widget class="QLabel" name="PenWidthLab">
@@ -136,13 +160,6 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
-      <widget class="QLabel" name="WordColourLab">
-       <property name="text">
-        <string>word colour</string>
-       </property>
-      </widget>
-     </item>
      <item row="7" column="0">
       <widget class="QLineEdit" name="CharacterOffsetTxt">
        <property name="maximumSize">
@@ -163,41 +180,73 @@
        </property>
       </widget>
      </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>10</y>
-      <width>401</width>
-      <height>561</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QTextEdit" name="textEdit"/>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>710</x>
-      <y>10</y>
-      <width>341</width>
-      <height>561</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QLabel" name="label">
+     <item row="6" column="1">
+      <widget class="QLabel" name="WordColourLab">
        <property name="text">
-        <string>TextLabel</string>
+        <string>word colour</string>
        </property>
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="OutPhotoLab">
+    <property name="geometry">
+     <rect>
+      <x>704</x>
+      <y>11</y>
+      <width>353</width>
+      <height>500</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>353</width>
+      <height>500</height>
+     </size>
+    </property>
+    <property name="baseSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>344</x>
+      <y>11</y>
+      <width>353</width>
+      <height>500</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>353</width>
+      <height>500</height>
+     </size>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -205,7 +254,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1064</width>
+     <width>1068</width>
      <height>26</height>
     </rect>
    </property>
