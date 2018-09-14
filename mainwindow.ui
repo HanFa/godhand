@@ -240,7 +240,10 @@
      <enum>QFrame::Raised</enum>
     </property>
     <property name="text">
-     <string>Out Put</string>
+     <string>233</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

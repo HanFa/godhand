@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-//#include <QPixmap>
+#include <QPixmap>//
 #include <QString>
 #include <QImage>
 #include <QMessageBox>
@@ -19,9 +19,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void loadImg(QString *);
+
 private:
     Ui::MainWindow *ui;
-    void loadImg(QString *);
 };
 
 #endif // MAINWINDOW_H
