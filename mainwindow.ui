@@ -240,7 +240,7 @@
      <enum>QFrame::Raised</enum>
     </property>
     <property name="text">
-     <string>233</string>
+     <string>OutPut</string>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -292,6 +292,7 @@
     </property>
     <addaction name="Initial"/>
     <addaction name="Generate"/>
+    <addaction name="ShowImg"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -328,6 +329,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="ShowImg">
+   <property name="text">
+    <string>Show img(&amp;S)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>

@@ -27,3 +27,9 @@ void MainWindow::loadImg(QString *fileName)
     }
     ui->OutPhotoLab->setPixmap(QPixmap::fromImage(*img));
 }
+
+void MainWindow::on_ShowImg_triggered()
+{
+    QString fileName = ":/img/img/imgOutput.png";
+    this->loadImg(&fileName);
+}

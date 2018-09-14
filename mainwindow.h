@@ -21,6 +21,9 @@ public:
 
     void loadImg(QString *);
 
+private slots:
+    void on_ShowImg_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
