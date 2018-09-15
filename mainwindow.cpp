@@ -23,21 +23,23 @@ void MainWindow::outPutImg(QString *fileName)//load output picture
 
 void MainWindow::drawCharacter()
 {
-    QString character = "A";
+    QString character = ui->textEdit->toPlainText();
     QFont font;
-    //set font size
-    font.setPixelSize(100);
-    font.setFamily("liguofu");
+
+    font.setPixelSize(ui->CharacterSizeTxt->text().toInt());//set font size
+    font.setFamily(ui->CharacterFamilyTxt->text());//set family
+    font.setWeight(ui->PenWidthTxt->text().toInt());
 
     //get size
     QFontMetrics fm(font);
+    int adSpacee =ui->CharacterSpaceTxt->text().toInt();
     int charWidth = fm.width(character);
     int charHeight = fm.height();
-    QSize imgSize(charWidth+2,charHeight+2);
+    QSize imgSize(charWidth+adSpacee,charHeight+adSpacee);
 
     QImage img(imgSize,QImage::Format_ARGB32);//Create a img
 
-    img.fill(Qt::white);//fill a transparent background
+    img.fill(Qt::transparent);//fill a transparent background
     QPainter painter(&img);//create a painter
     painter.setCompositionMode(QPainter::CompositionMode_SourceOver);//set CompositionMode to paint a draw
 
@@ -49,18 +51,11 @@ void MainWindow::drawCharacter()
 
     painter.drawText(img.rect(),Qt::AlignCenter,character);
 
-    ifErrorDig(img.save("./imgOutput1.png","png",100),
+    //save img
+    ifErrorDig(img.save("./imgOutput.png","png",100),
                "An error occur when we save img!");
      return ;
 }
-
-void MainWindow::on_ShowImg_triggered()//when push ShowImg
-{
-    QString fileName = ":/img/imgTest.png";
-    this->outPutImg(&fileName);
-}
-
-
 
 void MainWindow::ifErrorDig(bool result, QString tital)
 {
@@ -74,4 +69,18 @@ void MainWindow::ifErrorDig(bool result, QString tital)
         megBox.exec();
         return ;
     }
+}
+
+void MainWindow::on_ShowImg_triggered()//when push ShowImg
+{
+    QString fileName = "./imgOutput.png";
+    this->outPutImg(&fileName);
+}
+
+
+void MainWindow::on_Generate_triggered()
+{
+    drawCharacter();
+    QString fileName = "./imgOutput.png";
+    this->outPutImg(&fileName);
 }

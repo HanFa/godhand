@@ -31,6 +31,8 @@ protected:
 private slots:
     void on_ShowImg_triggered();
 
+    void on_Generate_triggered();
+
 private:
     Ui::MainWindow *ui;
     void outPutImg(QString *);
