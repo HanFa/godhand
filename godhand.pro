@@ -34,4 +34,4 @@ FORMS += \
         mainwindow.ui
 
 RESOURCES += \
-    img.qrc
+    img/img.qrc
