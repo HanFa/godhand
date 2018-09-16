@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setRandSource();
 }
 
 MainWindow::~MainWindow()
@@ -23,23 +24,29 @@ void MainWindow::outPutImg(QString *fileName)//load output picture
 
 void MainWindow::drawCharacter()
 {
+    //get requirement input by user
     QString character = ui->textEdit->toPlainText();
-    QFont font;
-
-    font.setPixelSize(ui->CharacterSizeTxt->text().toInt());//set font size
-    font.setFamily(ui->CharacterFamilyTxt->text());//set family
-    font.setWeight(ui->PenWidthTxt->text().toInt());
-
-    //get size
-    QFontMetrics fm(font);
+    QString characterFamily = ui->CharacterFamilyTxt->text();
+    int characterSize = ui->CharacterSizeTxt->text().toInt();
+    int penWidth= ui->PenWidthSbx->text().toInt();
     int adSpacee =ui->CharacterSpaceTxt->text().toInt();
+
+    //set font
+    QFont font;
+    font.setPixelSize(characterSize);//set font size
+    font.setFamily(characterFamily);//set family
+    font.setWeight(penWidth);
+
+    //set image size
+    QFontMetrics fm(font);
     int charWidth = fm.width(character);
     int charHeight = fm.height();
     QSize imgSize(charWidth+adSpacee,charHeight+adSpacee);
+//    QSize imgSize(charWidth,charHeight);
 
     QImage img(imgSize,QImage::Format_ARGB32);//Create a img
 
-    img.fill(Qt::transparent);//fill a transparent background
+    img.fill(Qt::white);//fill a transparent background
     QPainter painter(&img);//create a painter
     painter.setCompositionMode(QPainter::CompositionMode_SourceOver);//set CompositionMode to paint a draw
 
@@ -49,9 +56,56 @@ void MainWindow::drawCharacter()
     painter.setPen(pen);
     painter.setFont(font);
 
-    painter.drawText(img.rect(),Qt::AlignCenter,character);
+    //calculate draw position and move coordinate to that
+    QPoint drawPosition = img.rect().bottomLeft();
+    drawPosition.setX(drawPosition.x()+adSpacee/2);
+    drawPosition.setY(drawPosition.y()-characterSize/8-adSpacee/2);
+    painter.translate(drawPosition);
 
-    //save img
+    /*******random change before draw*******/
+
+    //random offset
+    int randoffNum = ui->RandOffsetTxt->text().toInt();
+    int offsetX = 0;
+    int offsetY = 0;
+    if(randoffNum != 0){
+    offsetX = getRandnum(randoffNum);
+    offsetY = getRandnum(randoffNum);
+    }
+
+    //rand pend width. PenWidth mast between 0 and 99, otherwise program will crash
+    int randPenWidth = ui->RandPenWidthSbx->text().toInt();
+    if(randPenWidth != 0)
+    {
+        randPenWidth += penWidth + getRandnum(randPenWidth);
+        if(randPenWidth>99)//make sure randPenWidth between 0 and 99
+            randPenWidth = 99;
+        else if(randPenWidth<0)
+            randPenWidth = 0;
+        font.setWeight(randPenWidth);
+        painter.setFont(font);
+    }
+
+    //random rotate
+    int randRotateAngel = ui->randRotateTxt->text().toInt();
+    if(randRotateAngel != 0){
+        qreal randRotate = (qreal)(randRotateAngel*rand()*1./(RAND_MAX));
+        painter.rotate(randRotate);
+    }
+
+    //random scale. x and y will bcome 1/x~x and 1/y~y
+    float randScale = ui->RandomScaleTxt->text().toFloat();
+    if(randScale>0){
+        qreal randScaleX = (qreal)(rand()*(randScale-1./randScale)*1./(RAND_MAX)+(1./randScale));
+        qreal randScaleY = (qreal)(rand()*(randScale-1./randScale)*1./(RAND_MAX)+(1./randScale));
+        ui->testTxt->setText(QString::number(randScaleX));
+        painter.scale(randScaleX,randScaleY);
+    }
+
+    /******************draw******************/
+    painter.drawText(offsetX,offsetY,character);
+//    painter.drawText(img.rect(),Qt::AlignCenter,character);
+
     ifErrorDig(img.save("./imgOutput.png","png",100),
                "An error occur when we save img!");
      return ;
@@ -62,7 +116,7 @@ void MainWindow::ifErrorDig(bool result, QString tital)
     if(!result)
     {
         QMessageBox megBox;//show a messageBox to alarm
-        megBox.setWindowTitle(tr("Error"));
+        megBox.setWindowTitle(tr("Σ(っ°Д°;)っ ERROR"));
         megBox.setIcon(QMessageBox::Critical);//Question,Information,Warning,Critical
         megBox.setText(tital);
         megBox.addButton(tr("(╯‵□′)╯︵┻━┻"),QMessageBox::YesRole);
@@ -71,6 +125,17 @@ void MainWindow::ifErrorDig(bool result, QString tital)
     }
 }
 
+void MainWindow::setRandSource()
+{
+    qsrand(QTime(0, 0, 0).secsTo(QTime::currentTime()));
+}
+
+int MainWindow::getRandnum(int mod)
+{
+    int outnum = (qrand()%mod)-mod/2;
+    return outnum;
+}
+/*******************************ui botten*******************************/
 void MainWindow::on_ShowImg_triggered()//when push ShowImg
 {
     QString fileName = "./imgOutput.png";

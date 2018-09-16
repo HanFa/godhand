@@ -128,7 +128,7 @@
      </size>
     </property>
     <property name="text">
-     <string>1</string>
+     <string>10</string>
     </property>
    </widget>
    <widget class="QLabel" name="CharacterSpaceLab">
@@ -183,25 +183,6 @@
      <string>Pen width</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="PenWidthTxt">
-    <property name="geometry">
-     <rect>
-      <x>12</x>
-      <y>32</y>
-      <width>100</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>100</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="text">
-     <string>50</string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="CharacterFamilyTxt">
     <property name="geometry">
      <rect>
@@ -232,6 +213,248 @@
     </property>
     <property name="text">
      <string>Character Family</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="formLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>200</width>
+      <height>278</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="maximumSize">
+        <size>
+         <width>15</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="img/img.qrc">:/img/Default.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>↓</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>defalut</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>↓</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="RandPenWidthIcon">
+       <property name="maximumSize">
+        <size>
+         <width>15</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="img/img.qrc">:/img/Pen width.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="randRotateIco">
+       <property name="maximumSize">
+        <size>
+         <width>15</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="img/img.qrc">:/img/angle.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="2">
+      <widget class="QLineEdit" name="randRotateTxt">
+       <property name="text">
+        <string>3</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="2">
+      <widget class="QLineEdit" name="RandomScaleTxt">
+       <property name="text">
+        <string>1.05</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>↓</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="RandOffsetIcon">
+       <property name="maximumSize">
+        <size>
+         <width>15</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="img/img.qrc">:/img/offset.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>↓</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="RandOffsetTxt">
+       <property name="text">
+        <string>5</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="RandOffsetLab">
+       <property name="text">
+        <string>offest</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLabel" name="RandomScaleLab">
+       <property name="text">
+        <string>Scale</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QSpinBox" name="RandPenWidthSbx">
+       <property name="maximum">
+        <number>99</number>
+       </property>
+       <property name="value">
+        <number>6</number>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="RandPenWidthLab">
+       <property name="text">
+        <string>pen wdith</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLabel" name="randRotateLab">
+       <property name="text">
+        <string>angle</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="RandomScaleICO">
+       <property name="maximumSize">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="img/img.qrc">:/img/size.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QSpinBox" name="PenWidthSbx">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>0</number>
+    </property>
+    <property name="maximum">
+     <number>95</number>
+    </property>
+    <property name="value">
+     <number>54</number>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="testTxt">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>90</y>
+      <width>113</width>
+      <height>21</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -304,6 +527,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="img/img.qrc"/>
+ </resources>
  <connections/>
 </ui>

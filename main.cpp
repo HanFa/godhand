@@ -7,6 +7,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     QString characte = "2";
     w.show();
-    w.drawCharacter();
     return a.exec();
 }

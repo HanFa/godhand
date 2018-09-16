@@ -2,5 +2,10 @@
     <qresource prefix="/img">
         <file>BackgroundA4.png</file>
         <file>imgTest.png</file>
+        <file>angle.png</file>
+        <file>Default.png</file>
+        <file>offset.png</file>
+        <file>Pen width.png</file>
+        <file>size.png</file>
     </qresource>
 </RCC>

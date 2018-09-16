@@ -11,7 +11,9 @@
 #include <QChar>
 #include <QFont>
 #include <QImage>
+#include <QPoint>
 #include <QRect>
+#include <QTime>
 
 
 namespace Ui {
@@ -25,7 +27,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void drawCharacter();
+	void setRandSource();
+    int getRandnum(int);
 protected:
 
 private slots:
@@ -36,7 +39,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     void outPutImg(QString *);
-    void ifErrorDig(bool, QString);
+    void drawCharacter();
+	void ifErrorDig(bool, QString);
 };
 
 #endif // MAINWINDOW_H
