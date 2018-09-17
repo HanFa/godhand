@@ -39,8 +39,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
     void outPutImg(QString *);
-    void drawCharacter();
-	void ifErrorDig(bool, QString);
+    QImage drawCharacter(QString ,int ,int);
+    void generateExp();
+    void ifErrorDig(bool, QString);
 };
 
 #endif // MAINWINDOW_H

@@ -22,14 +22,14 @@ void MainWindow::outPutImg(QString *fileName)//load output picture
     ui->OutPhotoLab->setPixmap(QPixmap::fromImage(*img));
 }
 
-void MainWindow::drawCharacter()
+QImage MainWindow::drawCharacter(QString character,int CharacterSpace,int characterSize)
 {
     //get requirement input by user
-    QString character = ui->textEdit->toPlainText();
+//    QString character = ui->textEdit->toPlainText();
     QString characterFamily = ui->CharacterFamilyTxt->text();
-    int characterSize = ui->CharacterSizeTxt->text().toInt();
+//    int characterSize = ui->CharacterSizeTxt->text().toInt();
     int penWidth= ui->PenWidthSbx->text().toInt();
-    int adSpacee =ui->CharacterSpaceTxt->text().toInt();
+//    int CharacterSpace =ui->CharacterSpaceTxt->text().toInt();
 
     //set font
     QFont font;
@@ -41,12 +41,12 @@ void MainWindow::drawCharacter()
     QFontMetrics fm(font);
     int charWidth = fm.width(character);
     int charHeight = fm.height();
-    QSize imgSize(charWidth+adSpacee,charHeight+adSpacee);
+    QSize imgSize(charWidth+CharacterSpace,charHeight+CharacterSpace);
 //    QSize imgSize(charWidth,charHeight);
 
     QImage img(imgSize,QImage::Format_ARGB32);//Create a img
 
-    img.fill(Qt::white);//fill a transparent background
+    img.fill(Qt::transparent);//fill a transparent background
     QPainter painter(&img);//create a painter
     painter.setCompositionMode(QPainter::CompositionMode_SourceOver);//set CompositionMode to paint a draw
 
@@ -58,8 +58,8 @@ void MainWindow::drawCharacter()
 
     //calculate draw position and move coordinate to that
     QPoint drawPosition = img.rect().bottomLeft();
-    drawPosition.setX(drawPosition.x()+adSpacee/2);
-    drawPosition.setY(drawPosition.y()-characterSize/8-adSpacee/2);
+    drawPosition.setX(drawPosition.x()+CharacterSpace/2);
+    drawPosition.setY(drawPosition.y()-characterSize/8-CharacterSpace/2);
     painter.translate(drawPosition);
 
     /*******random change before draw*******/
@@ -106,9 +106,27 @@ void MainWindow::drawCharacter()
     painter.drawText(offsetX,offsetY,character);
 //    painter.drawText(img.rect(),Qt::AlignCenter,character);
 
-    ifErrorDig(img.save("./imgOutput.png","png",100),
-               "An error occur when we save img!");
-     return ;
+//    ifErrorDig(img.save("./imgOutput.png","png",100),
+//               "An error occur when we save img!");
+     return img;
+}
+
+void MainWindow::generateExp()
+{
+    QImage img = drawCharacter(ui->CharacterExample->text(),10,40);
+    ui->Example1->setPixmap(QPixmap::fromImage(img));
+        ifErrorDig(img.save("./imgOutput.png","png",100),
+                      "An error occur when we save img!");
+    img = drawCharacter(ui->CharacterExample->text(),10,40);
+    ui->Example2->setPixmap(QPixmap::fromImage(img));
+    img = drawCharacter(ui->CharacterExample->text(),10,40);
+    ui->Example3->setPixmap(QPixmap::fromImage(img));
+    img = drawCharacter(ui->CharacterExample->text(),10,40);
+    ui->Example4->setPixmap(QPixmap::fromImage(img));
+    img = drawCharacter(ui->CharacterExample->text(),10,40);
+    ui->Example5->setPixmap(QPixmap::fromImage(img));
+    img = drawCharacter(ui->CharacterExample->text(),10,40);
+    ui->Example6->setPixmap(QPixmap::fromImage(img));
 }
 
 void MainWindow::ifErrorDig(bool result, QString tital)
@@ -145,7 +163,10 @@ void MainWindow::on_ShowImg_triggered()//when push ShowImg
 
 void MainWindow::on_Generate_triggered()
 {
-    drawCharacter();
-    QString fileName = "./imgOutput.png";
-    this->outPutImg(&fileName);
+//    QImage img = drawCharacter(ui->CharacterSizeTxt->text().toInt());
+//    ifErrorDig(img.save("./imgOutput.png","png",100),
+//                  "An error occur when we save img!");
+//    QString fileName = "./imgOutput.png";
+//    this->outPutImg(&fileName);
+    generateExp();
 }
