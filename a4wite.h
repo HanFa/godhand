@@ -1,0 +1,3 @@
+namespace Ui {
+class MainWindow;
+}

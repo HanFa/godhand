@@ -59,7 +59,7 @@ private:
     /*show img in Preview area*/
     void outPreview(QString *);
     /*draw a charactere and raturn it's image*/
-    QImage drawCharacter(QString ,int ,int);
+    QImage drawCharacter(QString,int ,int);
     void generateExp();
     void ifErrorDig(bool, QString);
 };
