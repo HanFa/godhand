@@ -36,6 +36,24 @@ private slots:
 
     void on_Generate_triggered();
 
+    void on_PenWidthSbx_editingFinished();
+
+    void on_CharacterFamilyTxt_editingFinished();
+
+    void on_CharacterSizeTxt_editingFinished();
+
+    void on_CharacterSpaceTxt_editingFinished();
+
+    void on_CharacterExample_editingFinished();
+
+    void on_RandOffsetTxt_editingFinished();
+
+    void on_RandPenWidthSbx_editingFinished();
+
+    void on_RandomScaleTxt_editingFinished();
+
+    void on_randRotateTxt_editingFinished();
+
 private:
     Ui::MainWindow *ui;
     void outPutImg(QString *);

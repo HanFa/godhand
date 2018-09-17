@@ -170,3 +170,39 @@ void MainWindow::on_Generate_triggered()
 //    this->outPutImg(&fileName);
     generateExp();
 }
+void MainWindow::on_PenWidthSbx_editingFinished()
+{
+    generateExp();
+}
+void MainWindow::on_CharacterFamilyTxt_editingFinished()
+{
+    generateExp();
+}
+void MainWindow::on_CharacterSizeTxt_editingFinished()
+{
+    generateExp();
+}
+void MainWindow::on_CharacterSpaceTxt_editingFinished()
+{
+    generateExp();
+}
+void MainWindow::on_CharacterExample_editingFinished()
+{
+    generateExp();
+}
+void MainWindow::on_RandOffsetTxt_editingFinished()
+{
+    generateExp();
+}
+void MainWindow::on_RandPenWidthSbx_editingFinished()
+{
+    generateExp();
+}
+void MainWindow::on_RandomScaleTxt_editingFinished()
+{
+    generateExp();
+}
+void MainWindow::on_randRotateTxt_editingFinished()
+{
+    generateExp();
+}
