@@ -56,7 +56,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    void outPutImg(QString *);
+    /*show img in Preview area*/
+    void outPreview(QString *);
+    /*draw a charactere and raturn it's image*/
     QImage drawCharacter(QString ,int ,int);
     void generateExp();
     void ifErrorDig(bool, QString);

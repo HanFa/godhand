@@ -14,12 +14,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::outPutImg(QString *fileName)//load output picture
+void MainWindow::outPreview(QString *fileName)//load output picture
 {
     QImage *img = new QImage;
     ifErrorDig(img->load(*fileName),
                "An error occur when we load image!");
-    ui->OutPhotoLab->setPixmap(QPixmap::fromImage(*img));
+    ui->PreviewLab->setPixmap(QPixmap::fromImage(*img));
 }
 
 QImage MainWindow::drawCharacter(QString character,int CharacterSpace,int characterSize)
@@ -157,7 +157,7 @@ int MainWindow::getRandnum(int mod)
 void MainWindow::on_ShowImg_triggered()//when push ShowImg
 {
     QString fileName = "./imgOutput.png";
-    this->outPutImg(&fileName);
+    this->outPreview(&fileName);
 }
 
 
