@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "simplepage.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -7,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setRandSource();
+    QList<QPoint> list;
+    list.append(QPoint(10,10));
 }
 
 MainWindow::~MainWindow()
@@ -98,7 +101,6 @@ QImage MainWindow::drawCharacter(QString character,int CharacterSpace,int charac
     if(randScale>0){
         qreal randScaleX = (qreal)(rand()*(randScale-1./randScale)*1./(RAND_MAX)+(1./randScale));
         qreal randScaleY = (qreal)(rand()*(randScale-1./randScale)*1./(RAND_MAX)+(1./randScale));
-        ui->testTxt->setText(QString::number(randScaleX));
         painter.scale(randScaleX,randScaleY);
     }
 
@@ -115,8 +117,6 @@ void MainWindow::generateExp()
 {
     QImage img = drawCharacter(ui->CharacterExample->text(),10,40);
     ui->Example1->setPixmap(QPixmap::fromImage(img));
-        ifErrorDig(img.save("./imgOutput.png","png",100),
-                      "An error occur when we save img!");
     img = drawCharacter(ui->CharacterExample->text(),10,40);
     ui->Example2->setPixmap(QPixmap::fromImage(img));
     img = drawCharacter(ui->CharacterExample->text(),10,40);
@@ -153,21 +153,62 @@ int MainWindow::getRandnum(int mod)
     int outnum = (qrand()%mod)-mod/2;
     return outnum;
 }
+
+void MainWindow::generateOutPage()
+{
+    //delete exist page
+    while(!pageList.isEmpty()){
+        pageList.removeLast();
+    }
+    //load backgronud and prepare
+    pageList.append(new QImage(":/img/BackgroundA4.png"));
+    QPainter painter(pageList.at(0));
+
+    //get font size
+    QFont font;
+    font.setPixelSize(ui->CharacterSizeTxt->text().toInt());
+    font.setFamily(ui->CharacterFamilyTxt->text());
+    QFontMetrics fm(font);
+    //ready a page map
+    Simplepage pageMap(pageList.at(0)->size(),
+                       ui->topMargainTxt->text().toInt(),ui->bottemMargainTxt->text().toInt(),
+                       ui->leftMargainTxt->text().toInt(),ui->rightMargainTxt->text().toInt(),
+                       ui->columnSpacingTxt->text().toInt(),ui->lineSpacingTxt->text().toInt(),
+                       fm.width("例")+ui->CharacterSpaceTxt->text().toInt(),fm.height()+ui->CharacterSpaceTxt->text().toInt());
+
+    //draw
+    QPixmap pix;
+    QImage charImage;
+    int iLoop = 0;
+    int totalMamber = ui->textEdit->document()->toPlainText().length();
+    for(iLoop=0;iLoop<totalMamber;iLoop++){
+        if(ui->textEdit->document()->toPlainText().mid(iLoop,1)=="\n")
+        {
+            pageMap.firstColumn();
+            pageMap.netLine();
+        }
+        else
+        {
+            charImage = drawCharacter(ui->textEdit->document()->toPlainText().mid(iLoop,1),
+                                      ui->CharacterSpaceTxt->text().toInt(),
+                                      ui->CharacterSizeTxt->text().toInt());
+            painter.drawPixmap(pageMap.atPixel(),QPixmap::fromImage(charImage));
+            //...if full
+            pageMap.nextPoint();
+        }
+    }
+    ui->PreviewLab->setPixmap(QPixmap::fromImage(*pageList.at(0)));
+}
 /*******************************ui botten*******************************/
 void MainWindow::on_ShowImg_triggered()//when push ShowImg
 {
-    QString fileName = "./imgOutput.png";
-    this->outPreview(&fileName);
+    generateOutPage();
+    pageList.at(0)->save("./output.png","png",100);
 }
 
 
 void MainWindow::on_Generate_triggered()
 {
-//    QImage img = drawCharacter(ui->CharacterSizeTxt->text().toInt());
-//    ifErrorDig(img.save("./imgOutput.png","png",100),
-//                  "An error occur when we save img!");
-//    QString fileName = "./imgOutput.png";
-//    this->outPutImg(&fileName);
     generateExp();
 }
 void MainWindow::on_PenWidthSbx_editingFinished()

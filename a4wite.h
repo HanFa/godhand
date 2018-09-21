@@ -1,3 +1,0 @@
-namespace Ui {
-class MainWindow;
-}

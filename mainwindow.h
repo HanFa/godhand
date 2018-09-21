@@ -8,13 +8,21 @@
 #include <QPainter>
 #include <QPen>
 #include <QString>
-#include <QChar>
 #include <QFont>
 #include <QImage>
 #include <QPoint>
 #include <QRect>
 #include <QTime>
+#include <QList>
 
+class QMessageBox;
+class QPixmap;
+class QPainter;
+class QPen;
+class QFont;
+class QImage;
+class QPoint;
+class QTime;
 
 namespace Ui {
 class MainWindow;
@@ -59,9 +67,11 @@ private:
     /*show img in Preview area*/
     void outPreview(QString *);
     /*draw a charactere and raturn it's image*/
-    QImage drawCharacter(QString,int ,int);
-    void generateExp();
+    QImage drawCharacter(QString character,int CharacterSpace,int characterSize);
+    QList <QImage*> pageList;
+    void generateExp();//generate exmaple character
     void ifErrorDig(bool, QString);
+    void generateOutPage();
 };
 
 #endif // MAINWINDOW_H
