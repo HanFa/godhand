@@ -39,7 +39,7 @@ QImage MainWindow::drawCharacter(QString character,int CharacterSpace,int charac
         int fontnum;
         do{
             fontnum = qrand()%totalFont;
-        }while(fontnum==preCharacterNum||totalFont==1);
+        }while(fontnum==preCharacterNum&&totalFont!=1);
 
         //set font
         font->setFamily(fontList.at(fontnum).family());
@@ -173,7 +173,12 @@ void MainWindow::generateOutPage()
     //get font size
     QFont font;
     font.setPixelSize(ui->CharacterSizeTxt->text().toInt());
-    font.setFamily(ui->CharacterFamilyTxt->text());
+    if(fontList.length()==0){
+        font.setFamily("宋体");
+    }
+    else{
+        font.setFamily(fontList.at(0).family());
+    }
     QFontMetrics fm(font);
     //ready a page map
     Simplepage pageMap(pageList.at(0)->size(),
@@ -262,7 +267,6 @@ void MainWindow::on_addFont_clicked()
     item->setText(ui->fontCbx->currentFont().family());
     item->setFont(ui->fontCbx->currentFont());
     ui->fontListViw->addItem(item);
-    ui->testTxt->setText(QString::number(fontList.length()));
 }
 
 
@@ -285,7 +289,6 @@ void MainWindow::on_remoteFont_clicked()
 
     //remove item and font in fontList
     fontList.removeAll(ui->fontListViw->currentItem()->font());
-    ui->testTxt->setText(QString::number(fontList.length()));
     ui->fontListViw->takeItem(ui->fontListViw->currentRow());
 
     //set selected item

@@ -633,7 +633,7 @@
         </size>
        </property>
        <property name="currentText">
-        <string>liguofu</string>
+        <string>Times New Roman</string>
        </property>
       </widget>
      </item>
@@ -784,26 +784,6 @@
       </widget>
      </item>
     </layout>
-   </widget>
-   <widget class="QLineEdit" name="CharacterFamilyTxt">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>140</y>
-      <width>113</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="testTxt">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>180</y>
-      <width>113</width>
-      <height>21</height>
-     </rect>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
