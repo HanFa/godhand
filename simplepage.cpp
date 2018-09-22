@@ -99,7 +99,7 @@ bool Simplepage::netLine()
 
 void Simplepage::firstColumn()
 {
-    currentLocation->setX(0);
+    currentLocation->setX(1);
 }
 
 bool Simplepage::gotoPoint(int ln, int col)

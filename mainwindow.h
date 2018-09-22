@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#define DEFALUTFONT "Times New Roman" //default font
+
 #include <QObject>
 #include <QMainWindow>
 #include <QMessageBox>
@@ -14,6 +16,8 @@
 #include <QRect>
 #include <QTime>
 #include <QList>
+#include <QStringList>
+#include <QListWidgetItem>
 
 class QMessageBox;
 class QPixmap;
@@ -62,13 +66,19 @@ private slots:
 
     void on_randRotateTxt_editingFinished();
 
+    void on_addFont_clicked();
+
+    void on_remoteFont_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QList <QImage*> pageList;
+    QList <QFont> fontList;
     /*show img in Preview area*/
     void outPreview(QString *);
     /*draw a charactere and raturn it's image*/
     QImage drawCharacter(QString character,int CharacterSpace,int characterSize);
-    QList <QImage*> pageList;
+
     void generateExp();//generate exmaple character
     void ifErrorDig(bool, QString);
     void generateOutPage();

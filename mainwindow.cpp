@@ -8,8 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setRandSource();
-    QList<QPoint> list;
-    list.append(QPoint(10,10));
 }
 
 MainWindow::~MainWindow()
@@ -28,24 +26,32 @@ void MainWindow::outPreview(QString *fileName)//load output picture
 QImage MainWindow::drawCharacter(QString character,int CharacterSpace,int characterSize)
 {
     //get requirement input by user
-//    QString character = ui->textEdit->toPlainText();
-    QString characterFamily = ui->CharacterFamilyTxt->text();
-//    int characterSize = ui->CharacterSizeTxt->text().toInt();
     int penWidth= ui->PenWidthSbx->text().toInt();
-//    int CharacterSpace =ui->CharacterSpaceTxt->text().toInt();
+    //In order to ensure next character font is different than previous one. character number will be store
+    static int preCharacterNum = 0;
+    int totalFont = fontList.length();
+    QFont *font = new QFont;
 
-    //set font
-    QFont font;
-    font.setPixelSize(characterSize);//set font size
-    font.setFamily(characterFamily);//set family
-    font.setWeight(penWidth);
+    if(totalFont==0){
+        font->setFamily(DEFALUTFONT);
+    }
+    else{
+        int fontnum;
+        do{
+            fontnum = qrand()%totalFont;
+        }while(fontnum==preCharacterNum||totalFont==1);
+
+        //set font
+        font->setFamily(fontList.at(fontnum).family());
+    }
+    font->setPixelSize(characterSize);//set font size
+    font->setWeight(penWidth);
 
     //set image size
-    QFontMetrics fm(font);
+    QFontMetrics fm(*font);
     int charWidth = fm.width(character);
     int charHeight = fm.height();
     QSize imgSize(charWidth+CharacterSpace,charHeight+CharacterSpace);
-//    QSize imgSize(charWidth,charHeight);
 
     QImage img(imgSize,QImage::Format_ARGB32);//Create a img
 
@@ -57,7 +63,7 @@ QImage MainWindow::drawCharacter(QString character,int CharacterSpace,int charac
     QPen pen = painter.pen();
     pen.setColor(QColor(0,0,0));
     painter.setPen(pen);
-    painter.setFont(font);
+    painter.setFont(*font);
 
     //calculate draw position and move coordinate to that
     QPoint drawPosition = img.rect().bottomLeft();
@@ -85,8 +91,8 @@ QImage MainWindow::drawCharacter(QString character,int CharacterSpace,int charac
             randPenWidth = 99;
         else if(randPenWidth<0)
             randPenWidth = 0;
-        font.setWeight(randPenWidth);
-        painter.setFont(font);
+        font->setWeight(randPenWidth);
+        painter.setFont(*font);
     }
 
     //random rotate
@@ -246,4 +252,46 @@ void MainWindow::on_RandomScaleTxt_editingFinished()
 void MainWindow::on_randRotateTxt_editingFinished()
 {
     generateExp();
+}
+
+void MainWindow::on_addFont_clicked()
+{
+    //record font and add fontListViw. all fontfamliy are show to user
+    fontList.append(ui->fontCbx->currentFont());
+    QListWidgetItem *item = new QListWidgetItem;
+    item->setText(ui->fontCbx->currentFont().family());
+    item->setFont(ui->fontCbx->currentFont());
+    ui->fontListViw->addItem(item);
+    ui->testTxt->setText(QString::number(fontList.length()));
+}
+
+
+void MainWindow::on_remoteFont_clicked()
+{
+    //ensure row is between 0 to length, otherwise program will crash
+    int row = ui->fontListViw->currentRow();
+    int length = ui->fontListViw->count();
+    if(length ==0)
+        return ;
+    if(row<0){
+        row = 0;
+        ui->fontListViw->setCurrentRow(row);
+    }
+    else if(row>=length)
+    {
+        row = length-1;
+        ui->fontListViw->setCurrentRow(row);
+    }
+
+    //remove item and font in fontList
+    fontList.removeAll(ui->fontListViw->currentItem()->font());
+    ui->testTxt->setText(QString::number(fontList.length()));
+    ui->fontListViw->takeItem(ui->fontListViw->currentRow());
+
+    //set selected item
+    if(row==length-1)
+    {
+        ui->fontListViw->setCurrentRow(row-1);
+    }
+
 }
