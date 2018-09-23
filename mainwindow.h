@@ -18,6 +18,8 @@
 #include <QList>
 #include <QStringList>
 #include <QListWidgetItem>
+#include <QTranslator>
+#include <QtDebug>
 
 class QMessageBox;
 class QPixmap;
@@ -74,6 +76,7 @@ private:
     Ui::MainWindow *ui;
     QList <QImage*> pageList;
     QList <QFont> fontList;
+    QTranslator *translator;
     /*show img in Preview area*/
     void outPreview(QString *);
     /*draw a charactere and raturn it's image*/

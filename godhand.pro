@@ -37,3 +37,5 @@ FORMS += \
 
 RESOURCES += \
     img/img.qrc
+
+TRANSLATIONS = godhand_zh_CN.ts + godhand_zh_EN.ts

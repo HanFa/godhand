@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setRandSource();
+    translator = new QTranslator;
+    translator->load("./godhand_zh_CN.qm");
+    qApp->installTranslator(translator);
 }
 
 MainWindow::~MainWindow()

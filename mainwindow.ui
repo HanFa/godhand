@@ -229,6 +229,21 @@
          <height>0</height>
         </size>
        </property>
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>3</string>
        </property>
@@ -241,6 +256,21 @@
          <width>100</width>
          <height>0</height>
         </size>
+       </property>
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>1.05</string>
@@ -306,6 +336,21 @@
          <height>0</height>
         </size>
        </property>
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>5</string>
        </property>
@@ -327,6 +372,21 @@
      </item>
      <item row="4" column="2">
       <widget class="QSpinBox" name="RandPenWidthSbx">
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
        <property name="maximum">
         <number>99</number>
        </property>
@@ -375,6 +435,21 @@
          <width>100</width>
          <height>0</height>
         </size>
+       </property>
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
        </property>
        <property name="maxLength">
         <number>1</number>
@@ -551,26 +626,13 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>10</y>
       <width>241</width>
-      <height>231</height>
+      <height>241</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="6" column="1">
-      <widget class="QLineEdit" name="CharacterSpaceTxt">
-       <property name="maximumSize">
-        <size>
-         <width>100</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>10</string>
-       </property>
-      </widget>
-     </item>
+    <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0,0,0,0,0,0,0">
      <item row="4" column="1">
       <widget class="QLineEdit" name="CharacterSizeTxt">
        <property name="maximumSize">
@@ -579,61 +641,23 @@
          <height>16777215</height>
         </size>
        </property>
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>100</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="CharacterSpaceLab">
-       <property name="text">
-        <string>Character space</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="PenWidthLab">
-       <property name="text">
-        <string>Pen width</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QSpinBox" name="PenWidthSbx">
-       <property name="maximumSize">
-        <size>
-         <width>50</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="minimum">
-        <number>0</number>
-       </property>
-       <property name="maximum">
-        <number>95</number>
-       </property>
-       <property name="value">
-        <number>10</number>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="CharacterFamilyLab">
-       <property name="text">
-        <string>Character Family</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QFontComboBox" name="fontCbx">
-       <property name="maximumSize">
-        <size>
-         <width>180</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="currentText">
-        <string>Times New Roman</string>
        </property>
       </widget>
      </item>
@@ -651,6 +675,16 @@
          <width>180</width>
          <height>100</height>
         </size>
+       </property>
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="CharacterFamilyLab">
+       <property name="text">
+        <string>Character Family</string>
        </property>
       </widget>
      </item>
@@ -684,6 +718,98 @@
        </item>
       </layout>
      </item>
+     <item row="1" column="0">
+      <widget class="QFontComboBox" name="fontCbx">
+       <property name="maximumSize">
+        <size>
+         <width>180</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string/>
+       </property>
+       <property name="currentText">
+        <string>Times New Roman</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="CharacterSpaceLab">
+       <property name="text">
+        <string>Character space</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="CharacterSpaceTxt">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>10</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="PenWidthLab">
+       <property name="text">
+        <string>Pen width</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QSpinBox" name="PenWidthSbx">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>95</number>
+       </property>
+       <property name="value">
+        <number>10</number>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget_2">
@@ -708,6 +834,21 @@
      </item>
      <item>
       <widget class="QLineEdit" name="topMargainTxt">
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>100</string>
        </property>
@@ -722,6 +863,21 @@
      </item>
      <item>
       <widget class="QLineEdit" name="bottemMargainTxt">
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>100</string>
        </property>
@@ -736,6 +892,21 @@
      </item>
      <item>
       <widget class="QLineEdit" name="leftMargainTxt">
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>100</string>
        </property>
@@ -750,6 +921,21 @@
      </item>
      <item>
       <widget class="QLineEdit" name="rightMargainTxt">
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>100</string>
        </property>
@@ -764,6 +950,21 @@
      </item>
      <item>
       <widget class="QLineEdit" name="columnSpacingTxt">
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>0</string>
        </property>
@@ -778,6 +979,21 @@
      </item>
      <item>
       <widget class="QLineEdit" name="lineSpacingTxt">
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="whatsThis">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleName">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>0</string>
        </property>
