@@ -8,14 +8,37 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setRandSource();
-    translator = new QTranslator;
-    translator->load("./godhand_zh_CN.qm");
-    qApp->installTranslator(translator);
+    setFixedSize(1000,620);
+    settips();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::settips()
+{
+    QFont font(tr("Times New Roman"));
+    font.setFamily(tr("Times New Roman"));
+    ui->fontCbx->setCurrentFont(font);
+    ui->fontCbx->setToolTip(tr("Sellect a font"));
+    ui->addFontBtn->setToolTip(tr("Add a font"));
+    ui->removeFontBtn->setToolTip(tr("Remove the sellected font"));
+    ui->CharacterSizeTxt->setToolTip(tr("Original size"));
+    ui->CharacterSpaceTxt->setToolTip(tr("Charactor additional pixel"));
+    ui->PenWidthSbx->setToolTip(tr("Original pen width\n(a useless argument)"));
+    ui->CharacterExample->setToolTip(tr("Generate example base on this charactor"));
+    ui->RandOffsetTxt->setToolTip(tr("Charactors' position will fluctuate"));
+    ui->RandPenWidthSbx->setToolTip(tr("Pen width may change randomly\n(a useless argument)"));
+    ui->RandomScaleTxt->setToolTip(tr("Become tiner or widther\n(from 1/n to n times)"));
+    ui->randRotateTxt->setToolTip(tr("Rotate character random\n from -n to n"));
+    ui->topMargainTxt->setToolTip(tr("Paper top margain"));
+    ui->bottemMargainTxt->setToolTip(tr("Paper bottem margain"));
+    ui->rightMargainTxt->setToolTip(tr("Paper righter margain"));
+    ui->leftMargainTxt->setToolTip(tr("Paper left margain"));
+    ui->columnSpacingTxt->setToolTip(tr("Spaceing of column"));
+    ui->lineSpacingTxt->setToolTip(tr("Spacing of line"));
 }
 
 void MainWindow::outPreview(QString *fileName)//load output picture
@@ -43,7 +66,7 @@ QImage MainWindow::drawCharacter(QString character,int CharacterSpace,int charac
         do{
             fontnum = qrand()%totalFont;
         }while(fontnum==preCharacterNum&&totalFont!=1);
-
+        preCharacterNum = fontnum;
         //set font
         font->setFamily(fontList.at(fontnum).family());
     }
@@ -214,25 +237,63 @@ void MainWindow::generateOutPage()
     ui->PreviewLab->setPixmap(QPixmap::fromImage(*pageList.at(0)));
 }
 /*******************************ui botten*******************************/
-void MainWindow::on_ShowImg_triggered()//when push ShowImg
+void MainWindow::on_Preview_triggered()
 {
     generateOutPage();
     pageList.at(0)->save("./output.png","png",100);
 }
 
+void MainWindow::on_openPreview_triggered()
+{
+    QString filePath = QCoreApplication::applicationDirPath() + "/output.png";
+    ui->textEdit->setText(filePath);
+    QDesktopServices::openUrl(QUrl::fromLocalFile(filePath.toStdString().c_str()));
+}
 
-void MainWindow::on_Generate_triggered()
+void MainWindow::on_GenerateExp_triggered()
 {
     generateExp();
 }
+
+void MainWindow::on_SavePage_triggered()
+{
+    generateOutPage();
+    QString fileName = QFileDialog::getSaveFileName(this,tr("Save"),"./",tr("Images (*.png)"));
+    pageList.at(0)->save(fileName,"png",100);
+}
+
+void MainWindow::on_Ssingal_triggered()
+{
+    QString text = ui->textEdit->toPlainText();
+    QString filePath = QFileDialog::getSaveFileName(this,tr("Save"),"./",tr("Images (*.png)"));
+    QString fileName;
+    QImage img;
+    int lenth=0;
+    int order=0;
+    int iloop=0;
+
+    text.remove("\n");//we don't need to save "\n"
+    lenth = text.length();
+    for(order=0;lenth!=0;order++)
+        lenth/=10;
+    lenth = text.length();
+    filePath.remove(".png",Qt::CaseInsensitive);
+
+    for(iloop=0; iloop<lenth; iloop++)
+    {
+        img = drawCharacter(text.at(iloop),
+                            ui->CharacterSpaceTxt->text().toInt(),
+                            ui->CharacterSizeTxt->text().toInt());
+        fileName = filePath + text.at(iloop) + tr("%1.png").arg(iloop,order,10,QLatin1Char('0'))+QString(".png");
+        img.save(fileName,"png",100);
+    }
+}
+
 void MainWindow::on_PenWidthSbx_editingFinished()
 {
     generateExp();
 }
-void MainWindow::on_CharacterFamilyTxt_editingFinished()
-{
-    generateExp();
-}
+
 void MainWindow::on_CharacterSizeTxt_editingFinished()
 {
     generateExp();
@@ -262,7 +323,7 @@ void MainWindow::on_randRotateTxt_editingFinished()
     generateExp();
 }
 
-void MainWindow::on_addFont_clicked()
+void MainWindow::on_addFontBtn_clicked()
 {
     //record font and add fontListViw. all fontfamliy are show to user
     fontList.append(ui->fontCbx->currentFont());
@@ -272,8 +333,7 @@ void MainWindow::on_addFont_clicked()
     ui->fontListViw->addItem(item);
 }
 
-
-void MainWindow::on_remoteFont_clicked()
+void MainWindow::on_removeFontBtn_clicked()
 {
     //ensure row is between 0 to length, otherwise program will crash
     int row = ui->fontListViw->currentRow();

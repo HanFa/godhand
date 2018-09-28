@@ -18,8 +18,11 @@
 #include <QList>
 #include <QStringList>
 #include <QListWidgetItem>
-#include <QTranslator>
-#include <QtDebug>
+#include <QFileDialog>
+#include <QDesktopServices>
+#include <QCoreApplication>
+#include <QUrl>
+#include <QLatin1Char>
 
 class QMessageBox;
 class QPixmap;
@@ -46,13 +49,8 @@ public:
 protected:
 
 private slots:
-    void on_ShowImg_triggered();
-
-    void on_Generate_triggered();
 
     void on_PenWidthSbx_editingFinished();
-
-    void on_CharacterFamilyTxt_editingFinished();
 
     void on_CharacterSizeTxt_editingFinished();
 
@@ -68,18 +66,30 @@ private slots:
 
     void on_randRotateTxt_editingFinished();
 
-    void on_addFont_clicked();
+    void on_addFontBtn_clicked();
 
-    void on_remoteFont_clicked();
+    void on_GenerateExp_triggered();
+
+    void on_Preview_triggered();
+
+    void on_SavePage_triggered();
+
+    void on_Ssingal_triggered();
+
+    void on_removeFontBtn_clicked();
+
+    void on_openPreview_triggered();
 
 private:
     Ui::MainWindow *ui;
     QList <QImage*> pageList;
     QList <QFont> fontList;
-    QTranslator *translator;
-    /*show img in Preview area*/
+    //set ui string
+    void settips();
+//    void setArguement();
+    //show img in Preview area
     void outPreview(QString *);
-    /*draw a charactere and raturn it's image*/
+    //draw a charactere and raturn it's image
     QImage drawCharacter(QString character,int CharacterSpace,int characterSize);
 
     void generateExp();//generate exmaple character
