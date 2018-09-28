@@ -246,7 +246,6 @@ void MainWindow::on_Preview_triggered()
 void MainWindow::on_openPreview_triggered()
 {
     QString filePath = QCoreApplication::applicationDirPath() + "/output.png";
-    ui->textEdit->setText(filePath);
     QDesktopServices::openUrl(QUrl::fromLocalFile(filePath.toStdString().c_str()));
 }
 
@@ -331,6 +330,7 @@ void MainWindow::on_addFontBtn_clicked()
     item->setText(ui->fontCbx->currentFont().family());
     item->setFont(ui->fontCbx->currentFont());
     ui->fontListViw->addItem(item);
+    generateExp();
 }
 
 void MainWindow::on_removeFontBtn_clicked()
@@ -359,5 +359,5 @@ void MainWindow::on_removeFontBtn_clicked()
     {
         ui->fontListViw->setCurrentRow(row-1);
     }
-
+    generateExp();
 }
