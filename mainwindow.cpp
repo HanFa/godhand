@@ -28,8 +28,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::settips()
 {
-    QFont font(tr("Times New Roman"));
-    font.setFamily(tr("Times New Roman"));
+    QFont font(tr("SimSun-ExtB"));
+    font.setFamily(tr("SimSun-ExtB"));
     ui->fontCbx->setCurrentFont(font);
     ui->fontCbx->setToolTip(tr("Sellect a font"));
     ui->addFontBtn->setToolTip(tr("Add a font"));
@@ -133,7 +133,7 @@ QImage MainWindow::drawCharacter(QString character,int CharacterSpace,int charac
     //random rotate
     int randRotateAngel = ui->randRotateTxt->text().toInt();
     if(randRotateAngel != 0){
-        qreal randRotate = (qreal)(randRotateAngel*rand()*1./(RAND_MAX));
+        qreal randRotate = (qreal)(randRotateAngel*rand()*1./(RAND_MAX)-randRotateAngel/2.0);
         painter.rotate(randRotate);
     }
 
@@ -212,7 +212,7 @@ void MainWindow::generateOutPage()
     QFont font;
     font.setPixelSize(ui->CharacterSizeTxt->text().toInt());
     if(fontList.length()==0){
-        font.setFamily("Times New Roman");
+        font.setFamily("SimSun-ExtB");
     }
     else{
         font.setFamily(fontList.at(0).family());
@@ -223,7 +223,7 @@ void MainWindow::generateOutPage()
                        ui->topMargainTxt->text().toInt(),ui->bottemMargainTxt->text().toInt(),
                        ui->leftMargainTxt->text().toInt(),ui->rightMargainTxt->text().toInt(),
                        ui->columnSpacingTxt->text().toInt(),ui->lineSpacingTxt->text().toInt(),
-                       fm.width("例")+ui->CharacterSpaceTxt->text().toInt(),fm.height()+ui->CharacterSpaceTxt->text().toInt());
+                       fm.width("云")+ui->CharacterSpaceTxt->text().toInt(),fm.height()+ui->CharacterSpaceTxt->text().toInt());
 
     //draw
     QPixmap pix;
@@ -295,26 +295,27 @@ void MainWindow::on_Ssingle_triggered()
 {
     QString text = ui->textEdit->toPlainText();
     QString filePath = QFileDialog::getSaveFileName(this,tr("Save"),"./",tr("Images (*.png)"));
-    QString fileName;
-    QImage img;
-    int lenth=0;
-    int order=0;
-    int iloop=0;
+    if(!filePath.isEmpty()){
+        QString fileName;
+        QImage img;
+        int lenth=0;
+        int order=0;
+        int iloop=0;
 
-    text.remove("\n");//we don't need to save "\n"
-    lenth = text.length();
-    for(order=0;lenth!=0;order++)
-        lenth/=10;
-    lenth = text.length();
-    filePath.remove(".png",Qt::CaseInsensitive);
-
-    for(iloop=0; iloop<lenth; iloop++)
-    {
-        img = drawCharacter(text.at(iloop),
-                            ui->CharacterSpaceTxt->text().toInt(),
-                            ui->CharacterSizeTxt->text().toInt());
-        fileName = filePath + text.at(iloop) + tr("%1.png").arg(iloop,order,10,QLatin1Char('0'))+QString(".png");
-        img.save(fileName,"png",100);
+        text.remove("\n");//we don't need to save "\n"
+        lenth = text.length();
+        for(order=0;lenth!=0;order++)
+            lenth/=10;
+        lenth = text.length();
+        filePath.remove(".png",Qt::CaseInsensitive);
+        for(iloop=0; iloop<lenth; iloop++)
+        {
+            img = drawCharacter(text.at(iloop),
+                                ui->CharacterSpaceTxt->text().toInt(),
+                                ui->CharacterSizeTxt->text().toInt());
+            fileName = filePath + tr("%1").arg(iloop,order,10,QLatin1Char('0'))+ text.at(iloop) + QString(".png");
+            img.save(fileName,"png",100);
+        }
     }
 }
 

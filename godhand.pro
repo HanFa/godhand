@@ -41,6 +41,8 @@ FORMS += \
 RESOURCES += \
     img/img.qrc
 
-TRANSLATIONS = godhand_zh_CN.ts + godhand_zh_EN.ts
+TRANSLATIONS += \
+    godhand_zh_CN.ts \
+    godhand_zh_EN.ts
 
-#RC_FILE += godhand.rc
+RC_FILE = godhand.rc
