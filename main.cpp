@@ -4,6 +4,7 @@
 #include <QLocale>
 #include <QDebug>
 #include <QDir>
+#include <QIcon>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -15,6 +16,7 @@ int main(int argc, char *argv[])
     }
     qApp->installTranslator(translator);
     MainWindow w;
+    w.setWindowIcon(QIcon(":/icon/mainIcon.png"));
     w.show();
     return a.exec();
 }

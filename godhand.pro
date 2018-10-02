@@ -26,16 +26,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    simplepage.cpp
+    simplepage.cpp \
+    aboultDlg.cpp
 
 HEADERS += \
         mainwindow.h \
-    simplepage.h
+    simplepage.h \
+    aboultDlg.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    aboultDlg.ui
 
 RESOURCES += \
     img/img.qrc
 
 TRANSLATIONS = godhand_zh_CN.ts + godhand_zh_EN.ts
+
+#RC_FILE += godhand.rc

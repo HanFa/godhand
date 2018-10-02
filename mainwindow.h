@@ -23,6 +23,9 @@
 #include <QCoreApplication>
 #include <QUrl>
 #include <QLatin1Char>
+#include <QPushButton>
+#include <QTextStream>
+#include <QLabel>
 
 class QMessageBox;
 class QPixmap;
@@ -32,6 +35,11 @@ class QFont;
 class QImage;
 class QPoint;
 class QTime;
+class QStringList;
+class QFileDialog;
+class QPushButton;
+class QTextStream;
+class QLabel;
 
 namespace Ui {
 class MainWindow;
@@ -74,11 +82,15 @@ private slots:
 
     void on_SavePage_triggered();
 
-    void on_Ssingal_triggered();
+    void on_Ssingle_triggered();
 
     void on_removeFontBtn_clicked();
 
     void on_openPreview_triggered();
+
+    void on_openAction_triggered();
+
+    void on_about_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -91,10 +103,10 @@ private:
     void outPreview(QString *);
     //draw a charactere and raturn it's image
     QImage drawCharacter(QString character,int CharacterSpace,int characterSize);
-
     void generateExp();//generate exmaple character
     void ifErrorDig(bool, QString);
     void generateOutPage();
+    bool loadFile();//load file
 };
 
 #endif // MAINWINDOW_H

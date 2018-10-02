@@ -1101,6 +1101,9 @@
     <property name="title">
      <string>File(&amp;F)</string>
     </property>
+    <addaction name="openAction"/>
+    <addaction name="SavePage"/>
+    <addaction name="Ssingle"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -1108,15 +1111,13 @@
     </property>
     <addaction name="GenerateExp"/>
     <addaction name="Preview"/>
-    <addaction name="SavePage"/>
-    <addaction name="Ssingal"/>
     <addaction name="openPreview"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>About(&amp;A)</string>
     </property>
-    <addaction name="actionAbout_goodhand_A"/>
+    <addaction name="about"/>
    </widget>
    <addaction name="menufile"/>
    <addaction name="menuEdit"/>
@@ -1138,11 +1139,12 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="openAction"/>
+   <addaction name="SavePage"/>
+   <addaction name="Ssingle"/>
    <addaction name="GenerateExp"/>
    <addaction name="Preview"/>
    <addaction name="openPreview"/>
-   <addaction name="SavePage"/>
-   <addaction name="Ssingal"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="GenerateExp">
@@ -1155,6 +1157,9 @@
    </property>
    <property name="toolTip">
     <string>Generate Example</string>
+   </property>
+   <property name="statusTip">
+    <string>Test current conversion arguement</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
@@ -1171,6 +1176,9 @@
    <property name="toolTip">
     <string>Show priview page</string>
    </property>
+   <property name="statusTip">
+    <string>Show priview page</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
    </property>
@@ -1183,17 +1191,29 @@
    <property name="text">
     <string>Save page(&amp;S)</string>
    </property>
+   <property name="toolTip">
+    <string>Ganerate and Save page</string>
+   </property>
+   <property name="statusTip">
+    <string>Ganerate and Save page</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="Ssingal">
+  <action name="Ssingle">
    <property name="icon">
     <iconset resource="img/img.qrc">
      <normaloff>:/icon/font_go.png</normaloff>:/icon/font_go.png</iconset>
    </property>
    <property name="text">
-    <string>Save as singal character(&amp;A)</string>
+    <string>Save as single character(&amp;A)</string>
+   </property>
+   <property name="toolTip">
+    <string>Save as single character(A)</string>
+   </property>
+   <property name="statusTip">
+    <string>Save charactor as single</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
@@ -1210,13 +1230,38 @@
    <property name="toolTip">
     <string>Open preview(O)</string>
    </property>
+   <property name="statusTip">
+    <string>Open preview</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+B</string>
    </property>
   </action>
-  <action name="actionAbout_goodhand_A">
+  <action name="about">
+   <property name="icon">
+    <iconset resource="img/img.qrc">
+     <normaloff>:/icon/mainIcon.png</normaloff>:/icon/mainIcon.png</iconset>
+   </property>
    <property name="text">
     <string>About goodhand(&amp;A)</string>
+   </property>
+   <property name="statusTip">
+    <string>Aboult Godhand</string>
+   </property>
+  </action>
+  <action name="openAction">
+   <property name="icon">
+    <iconset resource="img/img.qrc">
+     <normaloff>:/icon/page_white_text.png</normaloff>:/icon/page_white_text.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open(&amp;O)</string>
+   </property>
+   <property name="statusTip">
+    <string>Open a file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>

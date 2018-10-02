@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "simplepage.h"
+#include "aboultDlg.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,6 +11,14 @@ MainWindow::MainWindow(QWidget *parent) :
     setRandSource();
     setFixedSize(1000,620);
     settips();
+
+    //set statusBar
+    QLabel *statusLabel;
+    statusLabel = new QLabel;
+    statusLabel->setMinimumSize(150, 20);
+    statusLabel->setText(tr("Godhand by CuSO4Gem"));
+    ui->statusBar->addPermanentWidget(statusLabel);
+    ui->statusBar->showMessage(tr("Wellcome(≧ω≦)/!!"),2000);
 }
 
 MainWindow::~MainWindow()
@@ -138,16 +147,17 @@ QImage MainWindow::drawCharacter(QString character,int CharacterSpace,int charac
 
     /******************draw******************/
     painter.drawText(offsetX,offsetY,character);
-//    painter.drawText(img.rect(),Qt::AlignCenter,character);
-
-//    ifErrorDig(img.save("./imgOutput.png","png",100),
-//               "An error occur when we save img!");
      return img;
 }
 
 void MainWindow::generateExp()
 {
     QImage img = drawCharacter(ui->CharacterExample->text(),10,40);
+    if(ui->CharacterExample->text() == "乌")
+        img.load(":/img/dcloud.png");
+    else if(ui->CharacterExample->text() == "云")
+        img.load(":/img/cloud.png");
+
     ui->Example1->setPixmap(QPixmap::fromImage(img));
     img = drawCharacter(ui->CharacterExample->text(),10,40);
     ui->Example2->setPixmap(QPixmap::fromImage(img));
@@ -188,6 +198,8 @@ int MainWindow::getRandnum(int mod)
 
 void MainWindow::generateOutPage()
 {
+    //set statuebar
+    ui->statusBar->showMessage("Drawing",2000);
     //delete exist page
     while(!pageList.isEmpty()){
         pageList.removeLast();
@@ -200,7 +212,7 @@ void MainWindow::generateOutPage()
     QFont font;
     font.setPixelSize(ui->CharacterSizeTxt->text().toInt());
     if(fontList.length()==0){
-        font.setFamily("宋体");
+        font.setFamily("Times New Roman");
     }
     else{
         font.setFamily(fontList.at(0).family());
@@ -236,6 +248,24 @@ void MainWindow::generateOutPage()
     }
     ui->PreviewLab->setPixmap(QPixmap::fromImage(*pageList.at(0)));
 }
+
+bool MainWindow::loadFile()//load file
+{
+    QString fileName = QFileDialog::getOpenFileName(this,tr("Open text"),tr("./"),tr("Text (*.txt);;All(*.*)"));
+    if(!fileName.isEmpty()){
+        QFile file(fileName);
+        if(!file.open(QFile::ReadOnly | QFile::WriteOnly)){
+                QMessageBox::warning(this,tr("Open file"),tr("Can't read file %1\n %2").arg(fileName).arg(file.errorString()));
+                return false;
+            }
+        QTextStream in(&file);//set TextStream object
+        QApplication::setOverrideCursor(Qt::WaitCursor);//load file
+        ui->textEdit->setPlainText(in.readAll());
+        QApplication::restoreOverrideCursor();
+        return true;
+    }
+    return false;
+}
 /*******************************ui botten*******************************/
 void MainWindow::on_Preview_triggered()
 {
@@ -261,7 +291,7 @@ void MainWindow::on_SavePage_triggered()
     pageList.at(0)->save(fileName,"png",100);
 }
 
-void MainWindow::on_Ssingal_triggered()
+void MainWindow::on_Ssingle_triggered()
 {
     QString text = ui->textEdit->toPlainText();
     QString filePath = QFileDialog::getSaveFileName(this,tr("Save"),"./",tr("Images (*.png)"));
@@ -286,6 +316,25 @@ void MainWindow::on_Ssingal_triggered()
         fileName = filePath + text.at(iloop) + tr("%1.png").arg(iloop,order,10,QLatin1Char('0'))+QString(".png");
         img.save(fileName,"png",100);
     }
+}
+
+void MainWindow::on_openAction_triggered()
+{
+    if(!ui->textEdit->toPlainText().isEmpty()){// if text is not empty
+        QMessageBox msgBox;
+        msgBox.setWindowTitle(tr("ヾ(๑╹◡╹)ﾉ?"));
+        msgBox.setIcon(QMessageBox::Question);
+        msgBox.setText(tr("Text is not empty are you \nsure to open anoter text"));
+        QPushButton *yesBtn = msgBox.addButton(tr("Yes(≖ᴗ≖)✧(&Y)"),QMessageBox::YesRole);
+        QPushButton *noBtn = msgBox.addButton(tr("No >_<(&N)"),QMessageBox::NoRole);
+        QPushButton *cancelBtn = msgBox.addButton(tr("Cancel(-_-)(&C)"),QMessageBox::RejectRole);
+        msgBox.exec();
+        if(msgBox.clickedButton() == yesBtn){
+            loadFile();
+        }
+    }
+    else//if test is empty
+        loadFile();
 }
 
 void MainWindow::on_PenWidthSbx_editingFinished()
@@ -360,4 +409,13 @@ void MainWindow::on_removeFontBtn_clicked()
         ui->fontListViw->setCurrentRow(row-1);
     }
     generateExp();
+}
+
+
+
+void MainWindow::on_about_triggered()
+{
+    aboultDlg a(this);
+    a.show();
+    a.exec();
 }
